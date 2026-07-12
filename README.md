@@ -13,7 +13,7 @@
 
 ## 동작 방식
 
-1. `.github/workflows/daily-report.yml`이 평일 06:30(KST)에 자동 실행됩니다.
+1. `.github/workflows/daily-report.yml`이 평일 07:00(KST)에 자동 실행됩니다.
 2. `src/fetch.py`가 토픽별 RSS 피드를 수집하고 키워드로 걸러냅니다.
 3. `src/summarize.py`가 Gemini API로 각 기사를 한국어로 요약합니다 (API 키가 없거나 호출에 실패하면 원문 앞부분으로 자동 대체).
 4. `src/render.py` + `templates/report.html.j2`가 `docs/index.html`을 생성하고,
@@ -50,5 +50,5 @@ cd src && python main.py
 
 ## 실행 주기 변경
 
-`.github/workflows/daily-report.yml`의 `cron` 값을 수정하세요. 기본값은 평일 06:30 KST입니다
+`.github/workflows/daily-report.yml`의 `cron` 값을 수정하세요. 기본값은 평일 07:00 KST입니다
 (cron은 UTC 기준이라 KST와 9시간 차이가 있습니다).
