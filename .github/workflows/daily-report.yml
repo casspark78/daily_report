@@ -2,8 +2,8 @@ name: Daily Report
 
 on:
   schedule:
-    # 매주 월~금 06:30 KST (= 21:30 UTC 전날, 일~목)
-    - cron: "30 21 * * 0-4"
+    # 매주 월~금 07:00 KST (= 22:00 UTC 전날, 일~목)
+    - cron: "0 22 * * 0-4"
   workflow_dispatch: {}
 
 permissions:
