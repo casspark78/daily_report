@@ -8,23 +8,24 @@
 - 💰 경제·금융·증시
 - 🌍 국내외 시사
 
-각 토픽별 RSS 피드에서 최신 기사를 모아 OpenAI API로 한국어 2문장 요약을 만들고,
+각 토픽별 RSS 피드에서 최신 기사를 모아 Google Gemini API로 한국어 2문장 요약을 만들고,
 정적 HTML 리포트(`docs/index.html`)로 생성해 GitHub Pages로 배포합니다.
 
 ## 동작 방식
 
 1. `.github/workflows/daily-report.yml`이 평일 06:30(KST)에 자동 실행됩니다.
 2. `src/fetch.py`가 토픽별 RSS 피드를 수집하고 키워드로 걸러냅니다.
-3. `src/summarize.py`가 OpenAI API로 각 기사를 한국어로 요약합니다 (API 키가 없으면 원문 앞부분으로 대체).
+3. `src/summarize.py`가 Gemini API로 각 기사를 한국어로 요약합니다 (API 키가 없거나 호출에 실패하면 원문 앞부분으로 자동 대체).
 4. `src/render.py` + `templates/report.html.j2`가 `docs/index.html`을 생성하고,
    `docs/archive/YYYY-MM-DD.html`에 보관본을 남깁니다.
 5. 워크플로가 결과를 커밋·푸시하면 GitHub Pages가 자동 반영합니다.
 
 ## 초기 설정 (최초 1회)
 
-1. **OpenAI API 키 등록**
+1. **Gemini API 키 등록**
+   - [Google AI Studio](https://aistudio.google.com/apikey)에서 API 키 발급 (Gemini 키는 보통 `AIza...`로 시작합니다)
    - 저장소 Settings → Secrets and variables → Actions → New repository secret
-   - Name: `OPENAI_API_KEY`, Value: 발급받은 키
+   - Name: `GEMINI_API_KEY`, Value: 발급받은 키
 2. **GitHub Pages 활성화**
    - 저장소 Settings → Pages → Source: `Deploy from a branch`
    - Branch: `main`, Folder: `/docs` 선택 후 저장
@@ -36,7 +37,7 @@
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-export OPENAI_API_KEY=sk-...   # 선택사항. 없으면 원문 기반 요약으로 대체됨
+export GEMINI_API_KEY=...   # 선택사항. 없으면 원문 기반 요약으로 대체됨
 cd src && python main.py
 ```
 
