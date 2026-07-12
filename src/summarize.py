@@ -6,7 +6,7 @@ import os
 
 from fetch import Article
 
-MODEL = os.environ.get("SUMMARY_MODEL", "gemini-2.0-flash")
+MODEL = os.environ.get("SUMMARY_MODEL", "gemini-2.5-flash-lite")
 
 _SYSTEM_PROMPT = (
     "너는 바쁜 직장인을 위한 뉴스 큐레이터다. 주어진 기사 목록 각각을 한국어로 "
