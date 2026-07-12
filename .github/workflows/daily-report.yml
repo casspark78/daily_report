@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: List available Gemini models (diagnostic)
+        working-directory: src
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python list_models.py
+
       - name: Generate report
         working-directory: src
         env:
