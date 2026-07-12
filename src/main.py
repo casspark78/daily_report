@@ -27,7 +27,7 @@ def build_archive_index() -> None:
 <title>Daily Report Archive</title></head>
 <body>
 <h1>지난 리포트</h1>
-<p><a href="../index.html">최신 리포트로 이동</a></p>
+<p><a href="index.html">최신 리포트로 이동</a></p>
 <ul>
 {items}
 </ul>
